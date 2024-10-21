@@ -15,6 +15,7 @@ const Navbar: React.FC = () => {
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [account, setAccount] = useState<string | null>(null);
   const [balance, setBalance] = useState<string>('0 QF'); // Set initial balance to '0 MQ'
+  const [showPopdown, setShowPopdown] = useState<boolean>(false); // State to handle pop-down visibility
   const router = useRouter(); // Initialize the router
   const logoRef = useRef<HTMLDivElement>(null); // Ref for logo animation
 
@@ -47,6 +48,15 @@ const Navbar: React.FC = () => {
     }
   };
 
+  const handleWithdraw = () => {
+    // Withdraw logic here (You can call your contract function or any other logic)
+    alert('Withdraw function triggered! Implement your logic here.');
+  };
+
+  const togglePopdown = () => {
+    setShowPopdown(prev => !prev); // Toggle pop-down visibility
+  };
+
   return (
     <nav className="absolute top-0 left-0 right-0 flex justify-between items-center p-6 bg-transparent z-50">
       <div 
@@ -56,9 +66,38 @@ const Navbar: React.FC = () => {
         <Link href="/home">Quest Flow</Link>
       </div>
 
-      <div className="flex items-center space-x-4">
-        <div className="text-white font-semibold">
+      <div className="flex items-center space-x-4 relative">
+        {/* Balance with clickable popdown */}
+        <div 
+          className="text-white font-semibold relative cursor-pointer"
+          onClick={togglePopdown} // Toggle on click
+        >
           Balance: {balance}
+          
+          {/* Pop-down content */}
+          {showPopdown && (
+            <div className="text-sm absolute top-full mt-2 w-40 bg-white text-black p-4 rounded-lg shadow-lg z-10 right-[1px]">
+              <p className="font-semibold">Balance Details</p>
+              <p>Total Balance: {balance}</p>
+              {/* <p>Pending Transactions: 2</p> */}
+
+              {/* Withdraw Button */}
+              <button 
+                onClick={handleWithdraw}
+                className="mt-2 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-400 transition duration-300"
+              >
+                Withdraw
+              </button>
+
+              {/* Optional Close Button */}
+              <button 
+                onClick={() => setShowPopdown(false)}
+                className="mt-2 w-full bg-gray-300 text-black py-2 px-4 rounded-lg hover:bg-gray-400 transition duration-300"
+              >
+                Close
+              </button>
+            </div>
+          )}
         </div>
 
         <Link href={`/profile?account=${account}&balance=${balance}`}>
@@ -74,7 +113,7 @@ const Navbar: React.FC = () => {
           onClick={isConnected ? undefined : connectWallet} 
           className="text-white bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-400 hover:to-purple-600 transition duration-300 px-4 py-2 rounded-lg transform hover:scale-105"
         >
-          {isConnected ? `${account?.substring(0, 6)}...${account?.substring(account.length - 4)}` : "Connect MetaMask"}
+          {isConnected ? `${account?.substring(0, 6)}...${account?.substring(account.length - 4)}` : "Connect Wallet"}
         </button>
       </div>
     </nav>

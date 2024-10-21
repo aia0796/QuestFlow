@@ -73,7 +73,7 @@ const Page = () => {
       {isPopupVisible && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-50">
           <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Connect MetaMask</h2>
+            <h2 className="text-3xl font-bold mb-4">Connect Wallet</h2>
             <p className="text-lg mb-6">To launch the app, please connect your MetaMask wallet.</p>
             <button 
               onClick={connectMetaMask}
