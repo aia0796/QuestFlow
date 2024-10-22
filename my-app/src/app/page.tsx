@@ -2,21 +2,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { FaArrowDown } from 'react-icons/fa'; // Arrow icon for animation
-import Image from 'next/image';
 
 const Page = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(true); // To manage popup visibility
   const arrowRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLHeadingElement>(null);
   const connectTextRef = useRef<HTMLParagraphElement>(null); // Ref for the connect text
-
-  // Function to handle MetaMask connection
-  const connectMetaMask = async () => {
-    
-        setIsPopupVisible(false); // Hide the popup after connecting
-      
-     
-  };
 
   useEffect(() => {
     // Animate the arrow to point toward the Connect MetaMask button
@@ -29,26 +20,30 @@ const Page = () => {
     });
 
     // Fade-in animation for hero text and connect text
-    gsap.fromTo(heroTextRef.current, 
-      { opacity: 0 }, 
-      { 
-        opacity: 1, 
-        duration: 1, 
-        ease: 'power2.out', 
-        delay: 0.3 
+    gsap.fromTo(heroTextRef.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.3
       }
     );
 
-    gsap.fromTo(connectTextRef.current, 
-      { opacity: 0 }, 
-      { 
-        opacity: 1, 
-        duration: 1, 
-        ease: 'power2.out', 
-        delay: 0.6 
+    gsap.fromTo(connectTextRef.current,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.6
       }
     );
   }, []);
+
+  const connectMetaMask = async () => {
+    setIsPopupVisible(false); // Hide the popup after connecting
+  };
 
   return (
     <div
@@ -75,7 +70,7 @@ const Page = () => {
           <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center text-white">
             <h2 className="text-3xl font-bold mb-4">Connect Wallet</h2>
             <p className="text-lg mb-6">To launch the app, please connect your MetaMask wallet.</p>
-            <button 
+            <button
               onClick={connectMetaMask}
               className="bg-purple-600 px-6 py-3 rounded-lg text-white font-semibold hover:bg-purple-700 transition duration-300"
             >

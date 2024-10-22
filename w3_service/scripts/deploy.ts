@@ -9,7 +9,7 @@ async function main() {
   console.log(`Account balance: ${ethers.utils.formatEther(balance)} AIA`);
   // Compile and deploy the contract
 
-  const QuestToken = await ethers.getContractFactory("QuestToken");
+  const QuestToken = await ethers.getContractFactory("MemeVoting");
   const myCustomToken = await QuestToken.deploy();
   await myCustomToken.deployed();
 
