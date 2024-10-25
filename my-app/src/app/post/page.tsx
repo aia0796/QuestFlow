@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import questToken from '../contractData/Quest.json'
+import { BrowserProvider, ethers } from 'ethers';
 
 const BountyFormPage: React.FC = () => {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
@@ -20,6 +22,19 @@ const BountyFormPage: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        const contractAddress = '0x713953192CaAdA74026DD0009A69A637a0ce30fB'
+        const earnedAIA = 1;
+        const provider = new BrowserProvider(window.ethereum);
+
+        const signer = await provider.getSigner()
+        const movieRev = new ethers.Contract(contractAddress, questToken.abi, signer)
+        const walletAddress = await signer.getAddress();
+        // mint();
+        console.log(earnedAIA, "========inside withdraw===")
+
+        await (await movieRev.donate(walletAddress, "0xB702203B9FD0ee85aeDB9d314C075D480d716635", ethers.parseUnits(earnedAIA.toString(), 18))).wait();
+
+
 
         // Show the popup
         setIsPopupVisible(true);
@@ -43,49 +58,50 @@ const BountyFormPage: React.FC = () => {
                 <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
                     <div>
                         <label className="block text-white mb-2" htmlFor="bountyName">Bounty Name</label>
-                        <input 
-                            type="text" 
-                            id="bountyName" 
-                            required 
-                            className="w-full p-2 rounded bg-gray-700 text-white" 
+                        <input
+                            type="text"
+                            id="bountyName"
+                            required
+                            className="w-full p-2 rounded bg-gray-700 text-white"
                             placeholder="Enter Bounty Name"
                         />
                     </div>
                     <div>
                         <label className="block text-white mb-2" htmlFor="deadline">Deadline</label>
-                        <input 
-                            type="date" 
-                            id="deadline" 
-                            required 
-                            className="w-full p-2 rounded bg-gray-700 text-white" 
+                        <input
+                            type="date"
+                            id="deadline"
+                            required
+                            className="w-full p-2 rounded bg-gray-700 text-white"
                         />
                     </div>
                     <div>
                         <label className="block text-white mb-2" htmlFor="details">Details</label>
-                        <textarea 
-                            id="details" 
-                            required 
-                            rows={4} 
-                            className="w-full p-2 rounded bg-gray-700 text-white" 
+                        <textarea
+                            id="details"
+                            required
+                            rows={4}
+                            className="w-full p-2 rounded bg-gray-700 text-white"
                             placeholder="Enter Details"
                         />
                     </div>
                     <div>
                         <label className="block text-white mb-2" htmlFor="skillsNeeded">Skills Needed</label>
-                        <input 
-                            type="text" 
-                            id="skillsNeeded" 
-                            required 
-                            className="w-full p-2 rounded bg-gray-700 text-white" 
+                        <input
+                            type="text"
+                            id="skillsNeeded"
+                            required
+                            className="w-full p-2 rounded bg-gray-700 text-white"
                             placeholder="Enter Skills Needed"
                         />
                     </div>
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         className="bg-purple-500 text-white py-2 rounded hover:bg-purple-600 transition duration-200"
                     >
                         Create Bounty
                     </button>
+                    <p className='font-light text-white'>* 1 QF to confirm your post</p>
                 </form>
             </div>
 
