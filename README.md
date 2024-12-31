@@ -5,19 +5,19 @@ yarn install
 npm install
 npm start
 ```
-Add this QF token as manually into your wallet on AIA Chain
+Add this QF token as manually into your wallet on TBNB Chain
 
-Contract Address = 0x713953192CaAdA74026DD0009A69A637a0ce30fB
+Contract Address = 0xb331db286c33648045b05403d17c47a7de756692
 
-Verify this Contract -> [Verify QF](https://testnet.aiascan.com/token/0x713953192CaAdA74026DD0009A69A637a0ce30fB)
+Verify this Contract -> [Verify QF](https://testnet.bscscan.com/address/0xb331db286c33648045b05403d17c47a7de756692)
 
 ---
 
-# About QuestFlow (build on AIA chain)
+# About QuestFlow (build on TBNB chain)
 
 # QuestFlow
 
-**QuestFlow**: Revolutionizing gig economy with Web3, where tasks and bounties meet the decentralized world on AIA chain.
+**QuestFlow**: Revolutionizing gig economy with Web3, where tasks and bounties meet the decentralized world on TBNB chain.
 
 ## Introduction
 QuestFlow is a Web3 platform designed to bridge the gap between task providers and gig enthusiasts. By leveraging blockchain technology, we ensure transparency, security, and efficiency in every transaction.
@@ -32,7 +32,7 @@ QuestFlow is a Web3 platform designed to bridge the gap between task providers a
    - Complete tasks to earn QF tokens or other rewards.
 
 3. **Secure and Transparent**:
-   - Built on the AIA chain, ensuring all transactions are secure and transparent.
+   - Built on the TBNB chain, ensuring all transactions are secure and transparent.
    - Smart contracts manage tasks and bounties, guaranteeing fair compensation.
 
 4. **Community Driven**:

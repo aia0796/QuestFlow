@@ -22,17 +22,17 @@ const BountyFormPage: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const contractAddress = '0x713953192CaAdA74026DD0009A69A637a0ce30fB'
-        const earnedAIA = 1;
+        const contractAddress = '0xb331db286c33648045b05403d17c47a7de756692'
+        const earnedTBNB = 1;
         const provider = new BrowserProvider(window.ethereum);
 
         const signer = await provider.getSigner()
         const movieRev = new ethers.Contract(contractAddress, questToken.abi, signer)
         const walletAddress = await signer.getAddress();
         // mint();
-        console.log(earnedAIA, "========inside withdraw===")
+        console.log(earnedTBNB, "========inside withdraw===")
 
-        await (await movieRev.donate(walletAddress, "0xB702203B9FD0ee85aeDB9d314C075D480d716635", ethers.parseUnits(earnedAIA.toString(), 18))).wait();
+        await (await movieRev.donate(walletAddress, "0xB702203B9FD0ee85aeDB9d314C075D480d716635", ethers.parseUnits(earnedTBNB.toString(), 18))).wait();
 
 
 

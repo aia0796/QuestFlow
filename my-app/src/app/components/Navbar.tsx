@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
     // console.log(balance, "========inside withdraw===")
 
     await (await questContract.mint(account, ethers.parseUnits(parseInt(balance).toString(), 18))).wait();
-    alert('Withdraw your earned AIA coins!');
+    alert('Withdraw your earned TBNB coins!');
 
   };
 
